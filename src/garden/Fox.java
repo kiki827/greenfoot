@@ -22,12 +22,12 @@ public class Fox extends Actor {
 	@Override
 	public void act() {
 
-		System.out.println("fox"+getID());
+
 		move(movingSpeed);
 		if(isAtEdge()){
 			movingSpeed*=-1;
 		}
-		System.out.println("endfox"+getID());
+
 
 	}
 
