@@ -4,7 +4,7 @@ import greenfoot.Actor;
 
 public class Fox extends Actor {
 
-	int movingSpeed=1;
+
 
 	public Fox() {
 
@@ -22,12 +22,18 @@ public class Fox extends Actor {
 	@Override
 	public void act() {
 
+		move(1);
 
-		move(movingSpeed);
+
 		if(isAtEdge()){
-			movingSpeed*=-1;
+			turn(180);
 		}
+		if(isTouching(null)){
+			turn(180);
+			move(1);
 
+			System.out.println(this.getX());
+		}
 
 	}
 

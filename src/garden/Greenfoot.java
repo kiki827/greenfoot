@@ -10,7 +10,7 @@ public class Greenfoot {
 
 		Actor.setWorld(w);
 
-		runContorole(2);
+		runContorole(1000);
 
 
 	}
@@ -22,7 +22,7 @@ public class Greenfoot {
 
 			w.act();
 			try {
-				Thread.sleep(500);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();

@@ -5,17 +5,24 @@ import java.util.Random;
 
 import greenfoot.Actor;
 
-public class JankenAnimal extends Actor {
+public class JankenAnimal extends Actor implements Jankendekiru
+{
 
 	private int ID = IDGenerator.getid();
 	JankenHand myHand;
+
+	public JankenAnimal(int x, int y) {
+
+		super( x, y);
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
 
 	public void act() {
 		move(1);
 		if (isTouching(null)) {
 			myHand = getHand();
 			List<Object> io = getIntersectingObjects(null);
-			if (!(io.get(0) instanceof JankenAnimal)) {
+			if (!(io.get(0) instanceof Jankendekiru)) {
 				turn(180);
 			} else {// 相手もジャンケンができる
 				JankenAnimal enemy = (JankenAnimal) io.get(0);

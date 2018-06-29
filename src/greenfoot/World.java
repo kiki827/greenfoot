@@ -12,13 +12,15 @@ import javax.swing.JPanel;
 
 public class World extends JFrame {
 
-	ArrayList<Actor> actors = new ArrayList();
+	ArrayList<Actor> actors = new ArrayList<Actor>();
 
 	private JPanel p;
 	private  int worldWidth;
 	private  int worldheigth;
 
 	public World(String title, int worldWidth, int worldHeght, int cellCize) {
+		this.worldWidth = worldWidth;
+		this.worldheigth =worldHeght;
 
 		setTitle(title);
 		setBounds(100, 100, worldWidth, worldHeght);
@@ -39,7 +41,7 @@ public class World extends JFrame {
 
 		ImageIcon icon1 = new ImageIcon("./foxravit.png");
 		object.label = new JLabel(icon1);
-		object.label.setBounds(x, y, 100, 100);
+		object.label.setBounds(x, y,100, 100);
 		p.add(object.label);
 		p.repaint();
 
@@ -53,12 +55,12 @@ public class World extends JFrame {
 	}
 
 	public void act() {
-		System.out.println("worldact");
-		Iterator iterator = actors.iterator();
+
+		Iterator<Actor> iterator = actors.iterator();
         while(iterator.hasNext()) {
 
             Actor iactor=(Actor)iterator.next();
-        	System.out.println(iactor);
+
 
             iactor.act();
 
@@ -67,7 +69,7 @@ public class World extends JFrame {
 	}
 
 	public void getAllObject() {
-		Iterator iterator = actors.iterator();
+		Iterator<Actor> iterator = actors.iterator();
 		while (iterator.hasNext()) {
 
 			Actor iactor = (Actor) iterator.next();
@@ -77,11 +79,37 @@ public class World extends JFrame {
 
 		}
 	}
-	public int getWorldW(){
+
+	public int getWorldWidth() {
 		return worldWidth;
 	}
-	public int getWorldH(){
+
+	public int getWorldheigth() {
 		return worldheigth;
 	}
+
+	public <A> ArrayList<Object> getObjectsAt(int x,int y,java.lang.Class<A> cls){
+
+
+		ArrayList<Object> ob = new ArrayList<>();
+		Iterator<Actor> iterator = actors.iterator();
+		while (iterator.hasNext()) {
+
+			Actor iactor = (Actor) iterator.next();
+			int iactorX=iactor.getX();
+			int iactorY=iactor.getY();
+			if(iactorX>=x&&iactorX<x+100&&iactorY>=y&&iactorY<=y+100){
+				ob.add(iactor);
+			}else if(iactorX+100>=x&&iactorX<x&&iactorY>=y&&iactorY<=y+100){
+				ob.add(iactor);
+			}
+		}
+
+		return ob;
+
+	}
+
+
+
 
 }
